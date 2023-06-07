@@ -69,7 +69,7 @@ func main() {
 
 	// read service.yaml
 	var serviceList ServiceList
-	yamlFile, err := ioutil.ReadFile("services.yaml")
+	yamlFile, err := ioutil.ReadFile(".portpilot.yaml")
 	if err != nil {
 		log.Fatal(err)
 	}

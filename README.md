@@ -13,7 +13,7 @@ Before contributing to this tool, ensure that you have the following prerequisit
 ## Usage
 
 1. Clone the repository and install the tool using `go install`.
-2. Create a YAML file named `services.yaml`. The YAML file should contain the configuration for the services you want to port forward. Below is an example of the YAML file structure:
+2. Create a YAML file named `.portpilot.yaml`. The YAML file should contain the configuration for the services you want to port forward. Below is an example of the YAML file structure:
 
    ```yaml
    services:

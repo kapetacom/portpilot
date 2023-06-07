@@ -1,7 +1,6 @@
 # PortPilot Port Forwarding Tool
 
-[PortPilot logo](https://github.com/kapetacom/portpilot/blob/master/PortPilot.png?raw=true "PortPilot")
-
+<img src="PortPilot.png" alt="drawing" width="200"/>
 This is a command-line tool written in Go that enables port forwarding to multiple Kubernetes services. It reads service configuration from a YAML file and establishes port forwarding connections to the specified services.
 
 ## Prerequisites

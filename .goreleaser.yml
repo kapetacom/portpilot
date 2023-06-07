@@ -1,0 +1,8 @@
+brews:
+  - name: portpilot
+    tap:
+      owner: kapetacom
+      name: brews
+      token: "{{ .Env.GITHUB_TOKEN }}"
+    folder: Formula
+    homepage: https://github.com/kapetacom/portpilot

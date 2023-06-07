@@ -1,0 +1,13 @@
+services:
+  
+  - name: service-identity-provider
+    remotePort: 80
+    localPort: 5940
+
+  - name: service-registry
+    remotePort: 80
+    localPort: 5941
+  
+  - name: core-mongo-mongos
+    remotePort: 27017
+    localPort: 27017

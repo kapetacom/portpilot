@@ -10,6 +10,28 @@ Before contributing to this tool, ensure that you have the following prerequisit
 - Go programming language (https://golang.org/dl/)
 - Kubernetes client Go library (`go get k8s.io/client-go@v0.24.0`)
 
+## Installation
+
+### RPM Package
+
+```shell
+sudo tee -a /etc/yum.repos.d/artifact-registry.repo << EOF
+[kapeta-production-yum]
+name=kapeta-production-yum
+baseurl=https://europe-north1-yum.pkg.dev/projects/kapeta-production/kapeta-production-yum
+enabled=1
+repo_gpgcheck=0
+gpgcheck=0
+EOF
+```
+
+Then update the package list and install the tool:
+
+```shell
+sudo dnf update
+sudo dnf install portpilot
+```
+
 ## Usage
 
 1. Clone the repository and install the tool using `go install`.

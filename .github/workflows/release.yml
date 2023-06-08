@@ -48,4 +48,4 @@ jobs:
 
 
       - name: Upload RPM packages to GCP Artifact Registry
-        run: gcloud artifacts yum upload kapeta-production-yum --location=europe-north1--source=dist/*.rpm
+        run: find dist -name "*.rpm" -print0 | xargs -0 -I {} gcloud artifacts yum upload kapeta-production-yum --location=europe-north1 --source={}

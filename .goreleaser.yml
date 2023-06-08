@@ -9,5 +9,10 @@ brews:
 nfpms:
   - id: portpilot
     maintainer: 'Kapeta <info@kapeta.com>'
+    package_name: portpilot
+    formats:
+      - apk
+      - deb
+      - rpm
   - rpm:
      summary: PortPilot is a tool for port forwarding mutiple services at once

@@ -6,3 +6,8 @@ brews:
       token: "{{ .Env.GITHUB_TOKEN }}"
     folder: Formula
     homepage: https://github.com/kapetacom/portpilot
+nfpms:
+  - id: portpilot
+    maintainer: 'Kapeta <info@kapeta.com>'
+  - rpm:
+     summary: PortPilot is a tool for port forwarding mutiple services at once

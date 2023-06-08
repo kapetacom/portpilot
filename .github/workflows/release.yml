@@ -4,7 +4,6 @@ on:
   push:
     tags:
       - "*" # triggers only if push new tag version, like `0.8.4` or else
-
 jobs:
   build:
     name: GoReleaser build
@@ -22,10 +21,31 @@ jobs:
           go-version: "1.20"
         id: go
 
+      - name: Generate a token
+        id: generate_token
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.TOKEN_CREATOR_APP_ID }}
+          private_key: ${{ secrets.TOKEN_CREATOR_APP_KEY }}
+
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@master
+        env:
+          GITHUB_TOKEN: ${{ steps.generate_token.outputs.token }}
         with:
           version: latest
-          args: release --rm-dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GHA_TOKEN }}
+          args: release --clean
+
+      - uses: google-github-actions/auth@v1
+        name: google auth
+        with:
+          credentials_json: ${{ secrets.GCP_ARTIFACTORY_SERVICE_ACCOUNT }}
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+        with:
+            project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+
+      - name: Upload RPM packages to GCP Artifact Registry
+        run: find dist -name "*.rpm" -print0 | xargs -0 -I {} gcloud artifacts yum upload kapeta-production-yum --location=europe-north1 --source={}

@@ -12,6 +12,10 @@ Before contributing to this tool, ensure that you have the following prerequisit
 
 ## Installation
 
+### Binary package
+
+You can always download the latest binaries from the [release page](https://github.com/kapetacom/portpilot/releases)
+
 ### RPM Package
 
 ```shell

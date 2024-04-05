@@ -82,7 +82,8 @@ func main() {
 
 		// Start the port forwarding
 		go func(serviceName Service) {
-			podName, port := findPod(clientset, serviceName.Name)
+			podName := findPod(clientset, serviceName.Name)
+			port := fmt.Sprintf("%d", serviceName.RemotePort)
 			path := fmt.Sprintf("api/v1/namespaces/%s/pods/%s/portforward", "default", podName)
 			svcURL, err := url.Parse(fmt.Sprintf("%s/%v", config.Host, path))
 			if err != nil {
@@ -116,7 +117,7 @@ func main() {
 }
 
 // findPod finds a pod from a service name
-func findPod(clientset *kubernetes.Clientset, serviceName string) (string, string) {
+func findPod(clientset *kubernetes.Clientset, serviceName string) string {
 	// Retrieve the service object
 	service, err := clientset.CoreV1().Services("default").Get(context.Background(), serviceName, metav1.GetOptions{})
 	if err != nil {
@@ -132,7 +133,5 @@ func findPod(clientset *kubernetes.Clientset, serviceName string) (string, strin
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	return pods.Items[0].Name, fmt.Sprintf("%v", pods.Items[0].Spec.Containers[0].Ports[0].ContainerPort)
-
+	return pods.Items[0].Name
 }
